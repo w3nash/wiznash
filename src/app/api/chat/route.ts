@@ -7,7 +7,7 @@ export async function POST(request: Request) {
   const ollama = createOllama();
 
   const result = streamText({
-    model: ollama("deepseek-r1:7b"),
+    model: ollama(process.env.OLLAMA_AI_MODEL ?? "deepseek-r1:7b"),
     messages,
   });
 
