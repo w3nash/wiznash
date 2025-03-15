@@ -144,3 +144,106 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Add magical animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes sparkle {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+@keyframes bubbleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+/* Add a subtle fade-in animation for the scroll button */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fade-in 0.2s ease-out forwards;
+}
+
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.sparkle {
+  animation: sparkle 1.5s ease-in-out infinite;
+}
+
+.bubble-in {
+  animation: bubbleIn 0.3s ease-out forwards;
+}
+
+/* Improve link styling in chat messages */
+.bubble-content a {
+  @apply text-blue-400 underline font-medium hover:text-blue-500;
+}
+
+/* Improve code blocks in chat messages */
+.bubble-content pre {
+  @apply rounded-lg my-2 overflow-x-auto border border-border;
+}
+
+/* Improve list styling in chat messages */
+.bubble-content ul,
+.bubble-content ol {
+  @apply pl-5 my-2 space-y-1;
+}
+
+.bubble-content ul {
+  @apply list-disc;
+}
+
+.bubble-content ol {
+  @apply list-decimal;
+}
