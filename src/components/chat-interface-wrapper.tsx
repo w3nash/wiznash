@@ -2,10 +2,8 @@
 
 import { useChat } from "@ai-sdk/react";
 import ChatInterface from "@/components/chat-interface";
-import { getProfileContext, profile } from "@/lib/user-profile";
 
 export default function ChatInterfaceWrapper() {
-  const profileContext = getProfileContext();
   const chatHook = useChat({
     api: "/api/chat",
     onFinish: (message) => {
@@ -14,10 +12,6 @@ export default function ChatInterfaceWrapper() {
         message.createdAt = new Date();
       }
     },
-    body: {
-      profile,
-      profileContext,
-    }
   });
 
   return <ChatInterface {...chatHook} />;

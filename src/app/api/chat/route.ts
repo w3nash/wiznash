@@ -1,19 +1,16 @@
 import { createOllama } from "ollama-ai-provider";
 import { streamText } from "ai";
-import { analyzeSentiment } from "@/lib/sentiment-analysis";
+import { profile, getProfileContext } from "@/lib/user-profile";
 
 export async function POST(request: Request) {
-  const { messages, profile, profileContext } = await request.json();
+  // Parse the request body
+  const { messages } = await request.json();
 
+  // Get the profile context for the user
+  const profileContext = getProfileContext();
+
+  // Create the Ollama AI model
   const ollama = createOllama();
-
-  // Analyze sentiment of the last user message
-  const lastUserMessage = [...messages]
-    .reverse()
-    .find((m) => m.role === "user");
-  const sentiment = lastUserMessage
-    ? analyzeSentiment(lastUserMessage.content)
-    : { sentiment: "neutral", score: 0 };
 
   // Create the system prompt
   const systemPrompt = `
@@ -28,18 +25,6 @@ Here's important context about ${
     profile.firstName
   } that you should use to personalize your responses:
 ${profileContext}
-
-The user's current emotional state seems to be: ${sentiment.sentiment}.
-${
-  sentiment.sentiment === "negative"
-    ? "Provide extra encouragement and support in your response."
-    : ""
-}
-${
-  sentiment.sentiment === "positive"
-    ? "Match their positive energy with enthusiastic magical wonder."
-    : ""
-}
 
 If asked about ${
     profile.firstName
