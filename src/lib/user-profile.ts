@@ -58,7 +58,7 @@ Skills: ${profile.skills.join(", ")}
 Interests: ${profile.interests.join(", ")}
 Goals: ${profile.goals.join(", ")}
 Relationships: ${profile.relationships
-    .map((r) => `${r.name} (${r.relation})`)
+    .map((r) => `${r.name} is ${profile.firstName}'s ${r.relation}`)
     .join(", ")}
 Tasks: ${profile.recentTasks.join(", ")}
   `.trim();

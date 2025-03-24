@@ -194,7 +194,7 @@ export default function ChatInterface({
             value={input}
             onChange={handleInputChange}
             placeholder='Type your message here...'
-            className='flex-1 rounded-full py-4'
+            className='flex-1 rounded-full px-6 py-4'
             disabled={status == "streaming"}
             aria-label='Message input'
             autoFocus

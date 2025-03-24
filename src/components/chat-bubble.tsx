@@ -53,7 +53,7 @@ export function ChatBubble({
   return (
     <div
       className={cn(
-        "relative max-w-[85%] group",
+        "relative group max-w-[80%]",
         isUser ? "ml-auto" : "mr-auto",
         isVisible ? "bubble-in" : "opacity-0",
         className
@@ -87,9 +87,10 @@ export function ChatBubble({
         {/* Message content with improved typography and special styles for links, lists, and code */}
         <div
           className={cn(
-            "whitespace-pre-wrap text-base leading-relaxed font-medium bubble-content",
+            "whitespace-pre-wrap text-base leading-relaxed font-medium bubble-content text-wrap",
             isUser ? "text-[15px]" : "text-[15px]"
           )}
+          style={{ wordBreak: "break-word" }}
         >
           {modifiedContent}
         </div>
